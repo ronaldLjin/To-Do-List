@@ -1,0 +1,146 @@
+.list-title-area {
+    width: calc(100vw - 50px);
+    height: 150px;
+    position: absolute;
+    right: 0;
+    background-color: #A164D0;
+}
+
+.list-title {
+    position: absolute;
+    bottom: 0;
+    margin: 15px;
+    font-family: 'PT Sans';
+    font-size: 42pt;
+    color: white;
+}
+
+body {
+    margin: 0;
+    font-family: 'PT Sans';
+    background-color: #4A4A4A;
+}
+
+.to-do-list-area {
+    position: absolute;
+    right: 0;
+    top: 150px;
+    width: calc(100vw - 50px);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100vw - 80px);
+    margin: 15px;
+    background-color: #7BA36C;
+}
+
+#checkbox {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: white;
+    margin-right: 15px;
+    border-width: 2px;
+}
+
+.mini-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+}
+
+#duedate {
+    margin-right: 15px;
+}
+
+.edit {
+    margin-right: 15px;
+}
+@font-face {
+    font-family: 'PT Sans';
+    src: url(./PTSans-Regular.ttf);
+}
+
+.sidebar {
+    position: absolute;
+    left: -250px;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 999;
+    background-color: #373737;
+    text-align: right;
+}
+
+#new-item-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 15px;
+}
+
+#new-item-form-container {
+    background-color: #373737;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  color: white;
+  padding: 15px;
+}
+
+#mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    background-color: black;
+    opacity: 0.6;
+    z-index: 998;
+}
+
+#description {
+    resize: none;
+    background-color: #FFFFFF;
+    opacity: 0.25;
+    border-style: none;
+    margin-top: 10px;
+}
+
+#duedate {
+    margin: 10px 0 10px 0;
+    background: transparent;
+    border: none;
+    color: white;
+    opacity: 0.25;
+}
+
+#titlefield {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid white;
+    color: white;
+    opacity: 0.25;
+}
+
+.side-bar-text {
+    position: absolute;
+    left: 15px;
+    color: white;
+    text-align: left;
+}
+
+.table-icon {
+    margin-right: 15px;
+}
