@@ -1,19 +1,18 @@
 .list-title-area {
-    width: calc(100vw - 50px);
-    height: 150px;
+    width: calc(100vw - 80px);
     position: absolute;
+    min-height: 120px;
+    overflow: hidden;
     right: 0;
     background-color: #A164D0;
-}
-
-.list-title {
-    position: absolute;
-    bottom: 0;
-    margin: 15px;
-    font-family: 'PT Sans';
     font-size: 42pt;
     color: white;
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    padding: 15px;
 }
+
 
 body {
     margin: 0;
@@ -60,11 +59,13 @@ body {
 }
 
 #duedate {
-    margin-right: 15px;
+    color: white;
+    font-family: 'PT Sans';
 }
 
 .edit {
     margin-right: 15px;
+    margin-left: 15px;
 }
 @font-face {
     font-family: 'PT Sans';
@@ -87,6 +88,11 @@ body {
     bottom: 0;
     right: 0;
     margin: 15px;
+    border-style: none;
+    padding: 15px;
+    background-color: #03fc77;
+    color: white;
+    border-radius: 5px;
 }
 
 #new-item-form-container {
@@ -142,5 +148,24 @@ body {
 }
 
 .table-icon {
-    margin-right: 15px;
+    margin-right: 5px;
+}
+
+#close-form-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px;
+}
+
+#priority-selector {
+    border-style: none;
+    padding: 5px;
+    margin: 5px 0px 5px 0px;
+}
+
+#submit-button {
+    border-style: none;
+    padding: 5px;
+    margin: 5px 0 5px 0;
 }

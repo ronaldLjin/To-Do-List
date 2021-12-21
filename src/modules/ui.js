@@ -11,6 +11,7 @@ const listFactory = (title) => {
 
 let toDoLists = [toDoList1];
 
+
 function sideBar() {
     const sideBar = document.createElement('div');
     const hamburger = document.createElement('i');
@@ -27,7 +28,7 @@ function sideBar() {
     const sideBarTable = document.createElement('table')
     const tableRowOne = document.createElement('tr')
     const todayIcon = document.createElement('th')
-    todayIcon.classList.add('fas', 'fa-calender-week', 'table-icon')
+    todayIcon.classList.add('fas', 'fa-calendar-day', 'table-icon')
     const today = document.createElement('th')
     today.textContent = 'Today'
     tableRowOne.appendChild(todayIcon)
@@ -51,19 +52,23 @@ function sideBar() {
         const newListTitle = prompt('Enter a name')
         const newList = listFactory(newListTitle)
         toDoLists.push(newList)
-        const blank = document.createElement('th')
+        displayListList(newList)
+    })
+
+    function displayListList(whatList) {
+    const blank = document.createElement('th')
         const newListCell = document.createElement('th')
-        newListCell.textContent = newListTitle
+        newListCell.textContent = whatList.title
         newListCell.addEventListener('click', () => {
-            console.log(newList)
-            displayList(newList)
+            displayList(whatList)
         })
         newListCell.style.fontWeight = '400'
         const newListRow = document.createElement('tr')
         newListRow.appendChild(blank)
         newListRow.appendChild(newListCell)
         sideBarTable.insertBefore(newListRow, sideBarTable.children[sideBarTable.children.length - 1])
-    })
+    }
+
 
     newListRow.appendChild(emptyCell)
     newListRow.appendChild(newListBtn)
@@ -71,6 +76,10 @@ function sideBar() {
     sideBarTable.appendChild(newListRow)
     sideBarText.appendChild(sideBarTitle)
     sideBarText.appendChild(sideBarTable)
+
+    for (let i=0; i<toDoLists.length; i++) {
+        displayListList(toDoLists[i])
+    }
     function openMenu() {
         content.appendChild(mask)
         mask.addEventListener('click', closeMenu)
@@ -115,6 +124,11 @@ function displayList(whatList) {
     function  displayItem (item) {
         const listItem = document.createElement('div');
         listItem.classList.add('list-item');
+        if (item.priority == 'high') {
+            listItem.style.backgroundColor = '#DD5353'
+        } else if (item.priority == 'medium') {
+            listItem.style.backgroundColor = '#DD9553'
+        }
         const miniContainer1 = document.createElement('div');
         miniContainer1.classList.add('mini-container');
         const miniContainer2 = document.createElement('div');
@@ -155,10 +169,7 @@ function displayList(whatList) {
     function title() {
         const titleArea = document.createElement('div');
         titleArea.classList.add('list-title-area');
-        const listTitle = document.createElement('div');
-        listTitle.textContent = whatList.title;
-        listTitle.classList.add('list-title')
-        titleArea.appendChild(listTitle)
+        titleArea.textContent = whatList.title;
         content.appendChild(titleArea)
     }
 
@@ -173,13 +184,19 @@ function displayList(whatList) {
         const newItemBtn = document.createElement('button')
         newItemBtn.id = 'new-item-btn'
         newItemBtn.textContent = 'New Item';
+
         newItemBtn.addEventListener('click', () => {
             const mask = document.createElement('div');
             mask.id = 'mask';
+            mask.addEventListener('click', closeForm)
             const newItemFormContainer = document.createElement('div')
             newItemFormContainer.id = 'new-item-form-container'
             const newItemForm = document.createElement('form');
             newItemForm.id = 'new-item-form';
+            const closeFormBtn = document.createElement('i')
+            closeFormBtn.classList.add('fas', 'fa-times')
+            closeFormBtn.id = 'close-form-button'
+            closeFormBtn.addEventListener('click', closeForm)
             const formTitle = document.createElement('h1');
             formTitle.textContent = 'New Item';
             const titleField = document.createElement('input')
@@ -229,16 +246,22 @@ function displayList(whatList) {
             prioritySelector.appendChild(low)
     
             const submitButton = document.createElement('input');
+            submitButton.id = 'submit-button'
             submitButton.type = 'submit';
             submitButton.value = 'Submit';
     
             newItemForm.onsubmit = function () {
+                if (titleField.value === '') {
+                    alert('You must at least include a title')
+                    return false;
+                } else {
                 toDoListArea.appendChild(newItem(titleField.value, dueDate.value, prioritySelector.value, description.value))
                 content.removeChild(newItemFormContainer)
                 content.removeChild(mask)
-                return false;
+                    return false;
+                }
             }
-    
+            newItemForm.appendChild(closeFormBtn)
             newItemForm.appendChild(formTitle)
             newItemForm.appendChild(titleFieldLabel)
             newItemForm.appendChild(titleField)
@@ -261,6 +284,10 @@ function displayList(whatList) {
             newItemFormContainer.appendChild(newItemForm)
             content.appendChild(newItemFormContainer)
             content.appendChild(mask);
+            function closeForm() {
+                content.removeChild(mask)
+                content.removeChild(newItemFormContainer)
+            }
         })
         content.appendChild(newItemBtn)
     }   
@@ -269,6 +296,7 @@ function displayList(whatList) {
     newItemBtn()
 }
 
+displayList(toDoList1)
 
 function loadUi() {
     content.appendChild(sideBar())
