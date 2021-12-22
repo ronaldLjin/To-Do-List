@@ -16,8 +16,7 @@ function sideBar() {
     const sideBar = document.createElement('div');
     const hamburger = document.createElement('i');
     hamburger.classList.add('fas', 'fa-bars');
-    hamburger.style.color = "white";
-    hamburger.style.margin = "18px";
+    hamburger.id = 'hamburger'
     hamburger.addEventListener('click', openMenu)
     const mask = document.createElement('div');
     mask.id = 'mask';
@@ -45,8 +44,7 @@ function sideBar() {
     const emptyCell = document.createElement('th')
     const newListBtn = document.createElement('th')
     newListBtn.textContent = '+ New List'
-    newListBtn.style.fontSize = '10pt'
-    newListBtn.style.fontWeight = '400'
+    newListBtn.classList.add('new-list-button')
 
     newListBtn.addEventListener('click', () => {
         const newListTitle = prompt('Enter a name')
@@ -59,6 +57,7 @@ function sideBar() {
     const blank = document.createElement('th')
         const newListCell = document.createElement('th')
         newListCell.textContent = whatList.title
+        newListCell.classList.add('list')
         newListCell.addEventListener('click', () => {
             displayList(whatList)
         })
@@ -81,6 +80,7 @@ function sideBar() {
         displayListList(toDoLists[i])
     }
     function openMenu() {
+        mask.style.zIndex = '998'
         content.appendChild(mask)
         mask.addEventListener('click', closeMenu)
         sideBar.animate([
@@ -150,7 +150,7 @@ function displayList(whatList) {
         const edit = document.createElement('i')
         edit.classList.add('fas', 'fa-edit', 'edit')
         const info = document.createElement('i')
-        info.classList.add('fa', 'fa-info-circle')
+        info.classList.add('fa', 'fa-info-circle', 'info')
     
         miniContainer1.appendChild(checkbox)
         miniContainer1.appendChild(itemTitle)

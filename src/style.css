@@ -49,6 +49,11 @@ body {
     border-color: white;
     margin-right: 15px;
     border-width: 2px;
+    cursor: pointer;
+}
+
+#checkbox:hover {
+    background-color: white;
 }
 
 .mini-container {
@@ -66,6 +71,11 @@ body {
 .edit {
     margin-right: 15px;
     margin-left: 15px;
+    cursor: pointer;
+}
+
+.info {
+    cursor: pointer;
 }
 @font-face {
     font-family: 'PT Sans';
@@ -73,10 +83,10 @@ body {
 }
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     left: -250px;
     top: 0;
-    bottom: 0;
+    height: 100vh;
     width: 300px;
     z-index: 999;
     background-color: #373737;
@@ -95,25 +105,30 @@ body {
     border-radius: 5px;
 }
 
+#new-item-btn:hover {
+    cursor: pointer;
+    color: #A164D0;
+}
+
 #new-item-form-container {
     background-color: #373737;
-    position: absolute;
+    position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 1001;
   color: white;
   padding: 15px;
 }
 
 #mask {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     width: 100vw;
     background-color: black;
     opacity: 0.6;
-    z-index: 998;
+    z-index: 1000;
 }
 
 #description {
@@ -130,6 +145,7 @@ body {
     border: none;
     color: white;
     opacity: 0.25;
+    cursor: pointer;
 }
 
 #titlefield {
@@ -162,10 +178,33 @@ body {
     border-style: none;
     padding: 5px;
     margin: 5px 0px 5px 0px;
+    cursor: pointer;
 }
 
 #submit-button {
     border-style: none;
     padding: 5px;
     margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.list:hover {
+    cursor: pointer;
+    color: #A164D0;
+}
+
+#hamburger {
+    cursor: pointer;
+    color: white;
+    margin: 18px;
+}
+
+.new-list-button {
+    cursor: pointer;
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+.new-list-button:hover {
+    color: #A164D0;
 }
