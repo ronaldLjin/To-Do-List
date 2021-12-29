@@ -121,6 +121,19 @@ body {
   padding: 15px;
 }
 
+#info-box {
+    background-color: #373737;
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  color: white;
+  padding: 15px 30px 15px 15px;
+  width: 300px;
+  min-height: 30px;
+}
+
 #mask {
     position: fixed;
     top: 0;
@@ -172,6 +185,7 @@ body {
     top: 0;
     right: 0;
     margin: 15px;
+    cursor: pointer;
 }
 
 #priority-selector {
@@ -206,5 +220,13 @@ body {
 }
 
 .new-list-button:hover {
+    color: #A164D0;
+}
+
+#today {
+    cursor: pointer;
+}
+
+#today:hover {
     color: #A164D0;
 }
