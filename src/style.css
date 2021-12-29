@@ -39,6 +39,7 @@ body {
     width: calc(100vw - 80px);
     margin: 15px;
     background-color: #7BA36C;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 #checkbox {
@@ -100,9 +101,10 @@ body {
     margin: 15px;
     border-style: none;
     padding: 15px;
-    background-color: #03fc77;
+    background-color: black;
     color: white;
     border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 #new-item-btn:hover {
@@ -150,6 +152,7 @@ body {
     opacity: 0.25;
     border-style: none;
     margin-top: 10px;
+    -webkit-appearance: none;
 }
 
 #duedate {
@@ -167,6 +170,7 @@ body {
     border-bottom: 2px solid white;
     color: white;
     opacity: 0.25;
+    -webkit-appearance: none;
 }
 
 .side-bar-text {
@@ -193,6 +197,7 @@ body {
     padding: 5px;
     margin: 5px 0px 5px 0px;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 #submit-button {
@@ -200,6 +205,7 @@ body {
     padding: 5px;
     margin: 5px 0 5px 0;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 .list:hover {
@@ -229,4 +235,13 @@ body {
 
 #today:hover {
     color: #A164D0;
+}
+
+.delete-list {
+    color: #5F5F5F;
+    cursor: pointer;
+}
+
+.delete-list:hover {
+    color: #9F9E9E;
 }

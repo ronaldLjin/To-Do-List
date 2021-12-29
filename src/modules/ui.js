@@ -3,14 +3,14 @@ const toDoListArea = document.createElement('div');
 toDoListArea.classList.add('to-do-list-area');
 
 let today = new Date()
-let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-let toDoList1 = {title: 'To-do list 1', list: []};
-let dueTodayList = {title: 'Due Today', list: [], type: 'today'}
+let toDoList1 = { title: 'To-do list 1', list: [] };
+let dueTodayList = { title: 'Due Today', list: [], type: 'today' }
 
 const listFactory = (title) => {
     let list = []
-    return {title, list};
+    return { title, list };
 }
 
 let toDoLists = [dueTodayList, toDoList1];
@@ -67,7 +67,20 @@ function sideBar() {
     })
 
     function displayListList(whatList) {
-    const blank = document.createElement('th')
+        const blank = document.createElement('th')
+        const newListRow = document.createElement('tr')
+        blank.classList.add('fas', 'fa-times', 'delete-list')
+        blank.addEventListener('click', () => {
+            if (toDoLists.length === 2) {
+                alert('You cannot delete every list!')
+            } else {
+                toDoLists = toDoLists.filter(function (u) {
+                    return u !== whatList;
+                })
+                sideBarTable.removeChild(newListRow)
+                load()
+            }
+        })
         const newListCell = document.createElement('th')
         newListCell.textContent = whatList.title
         newListCell.classList.add('list')
@@ -75,20 +88,19 @@ function sideBar() {
             displayList(whatList)
         })
         newListCell.style.fontWeight = '400'
-        const newListRow = document.createElement('tr')
         newListRow.appendChild(blank)
         newListRow.appendChild(newListCell)
         sideBarTable.insertBefore(newListRow, sideBarTable.children[sideBarTable.children.length - 1])
     }
 
     function displayToday() {
-        for (let i=1; i<toDoLists.length; i++) {
-            for (let e=0; e<toDoLists[i].list.length; e++)
+        for (let i = 1; i < toDoLists.length; i++) {
+            for (let e = 0; e < toDoLists[i].list.length; e++)
                 if (toDoLists[i].list[e].duedate === date) {
                     if (dueTodayList.list.indexOf(toDoLists[i].list[e]) !== -1) {
                         continue;
                     } else {
-                    dueTodayList.list.push(toDoLists[i].list[e])
+                        dueTodayList.list.push(toDoLists[i].list[e])
                     }
                 } else {
                     continue;
@@ -104,7 +116,7 @@ function sideBar() {
     sideBarText.appendChild(sideBarTitle)
     sideBarText.appendChild(sideBarTable)
 
-    for (let i=1; i<toDoLists.length; i++) {
+    for (let i = 1; i < toDoLists.length; i++) {
         displayListList(toDoLists[i])
     }
     function openMenu() {
@@ -112,8 +124,8 @@ function sideBar() {
         content.appendChild(mask)
         mask.addEventListener('click', closeMenu)
         sideBar.animate([
-            {left: '-250px', textAlign: 'center'},
-            {left: '0px', textAlign: 'right'},
+            { left: '-250px', textAlign: 'center' },
+            { left: '0px', textAlign: 'right' },
         ], {
             duration: 100,
             iterations: 1,
@@ -126,8 +138,8 @@ function sideBar() {
     function closeMenu() {
         content.removeChild(mask)
         sideBar.animate([
-            {left: '0px', textAlign: 'right'},
-            {left: '-250px', textAlign: 'right'},
+            { left: '0px', textAlign: 'right' },
+            { left: '-250px', textAlign: 'right' },
         ], {
             duration: 100,
             iterations: 1,
@@ -151,7 +163,7 @@ function displayList(whatList) {
     content.appendChild(sideBar())
     toDoListArea.textContent = '';
 
-    function  displayItem (item) {
+    function displayItem(item) {
         const listItem = document.createElement('div');
         listItem.classList.add('list-item');
         if (item.priority == 'high') {
@@ -169,8 +181,8 @@ function displayList(whatList) {
             whatList.list = whatList.list.filter(function (todo) {
                 return todo !== item;
             })
-            for (let i=1; i<toDoLists.length; i++) {
-                for (let e=0; e<toDoLists[i].list.length; e++)
+            for (let i = 1; i < toDoLists.length; i++) {
+                for (let e = 0; e < toDoLists[i].list.length; e++)
                     if (toDoLists[i].list[e] === item) {
                         toDoLists[i].list = toDoLists[i].list.filter(function (todo) {
                             return todo !== item;
@@ -180,6 +192,7 @@ function displayList(whatList) {
                     }
             }
             toDoListArea.removeChild(listItem)
+            load()
         })
         const itemTitle = document.createElement('div')
         itemTitle.id = 'item-title';
@@ -210,9 +223,9 @@ function displayList(whatList) {
             titleField.type = 'text';
             titleField.id = 'titlefield';
             titleField.name = 'titlefield';
-    
+
             const lineBreak = document.createElement('br');
-    
+
             const dueDate2 = document.createElement('input')
             const dueDateLabel = document.createElement('label');
             dueDateLabel.htmlFor = 'duedate';
@@ -221,7 +234,7 @@ function displayList(whatList) {
             dueDate2.id = 'duedate';
             dueDate2.value = item.duedate;
             dueDate2.name = 'duedate';
-    
+
             const description = document.createElement('textarea')
             const descriptionLabel = document.createElement('label');
             descriptionLabel.htmlFor = 'description';
@@ -231,7 +244,7 @@ function displayList(whatList) {
             description.rows = '8'
             description.value = item.desc
             description.cols = '40'
-    
+
             const prioritySelector = document.createElement('select');
             const prioritySelectorLabel = document.createElement('label')
             prioritySelectorLabel.htmlFor = 'prioritySelector'
@@ -251,12 +264,12 @@ function displayList(whatList) {
             prioritySelector.appendChild(medium)
             prioritySelector.appendChild(low)
             prioritySelector.value = item.priority
-    
+
             const submitButton = document.createElement('input');
             submitButton.id = 'submit-button'
             submitButton.type = 'submit';
             submitButton.value = 'Submit';
-    
+
             newItemForm.onsubmit = function () {
                 if (titleField.value === '') {
                     alert('You must at least include a title')
@@ -275,9 +288,9 @@ function displayList(whatList) {
                     } else if (item.priority == 'low') {
                         listItem.style.backgroundColor = '#7BA36C'
                     }
-                content.removeChild(newItemFormContainer)
-                content.removeChild(mask)
-                load()
+                    content.removeChild(newItemFormContainer)
+                    content.removeChild(mask)
+                    load()
                     return false;
                 }
             }
@@ -332,12 +345,12 @@ function displayList(whatList) {
             content.appendChild(mask)
             content.appendChild(infoBox)
         })
-    
+
         miniContainer1.appendChild(checkbox)
         miniContainer1.appendChild(itemTitle)
         miniContainer2.appendChild(dueDate)
         if (whatList !== dueTodayList) {
-        miniContainer2.appendChild(edit)
+            miniContainer2.appendChild(edit)
         }
         miniContainer2.appendChild(info)
         listItem.appendChild(miniContainer1);
@@ -345,7 +358,7 @@ function displayList(whatList) {
         return listItem
     }
 
-    for (let i=0; i<whatList.list.length; i++) {
+    for (let i = 0; i < whatList.list.length; i++) {
         toDoListArea.appendChild(displayItem(whatList.list[i]))
     }
 
@@ -354,6 +367,7 @@ function displayList(whatList) {
         titleArea.classList.add('list-title-area');
         titleArea.textContent = whatList.title;
         content.appendChild(titleArea)
+        toDoListArea.style.top = titleArea.clientHeight + 'px'
     }
 
     function newItem(title, duedate, priority, desc) {
@@ -362,8 +376,8 @@ function displayList(whatList) {
         load()
         return displayItem(thisItem)
     }
-    
-    
+
+
     function newItemBtn() {
         const newItemBtn = document.createElement('button')
         newItemBtn.id = 'new-item-btn'
@@ -390,9 +404,9 @@ function displayList(whatList) {
             titleField.type = 'text';
             titleField.id = 'titlefield';
             titleField.name = 'titlefield';
-    
+
             const lineBreak = document.createElement('br');
-    
+
             const dueDate = document.createElement('input')
             const dueDateLabel = document.createElement('label');
             dueDateLabel.htmlFor = 'duedate';
@@ -400,7 +414,7 @@ function displayList(whatList) {
             dueDate.type = 'date';
             dueDate.id = 'duedate';
             dueDate.name = 'duedate';
-    
+
             const description = document.createElement('textarea')
             const descriptionLabel = document.createElement('label');
             descriptionLabel.htmlFor = 'description';
@@ -409,7 +423,7 @@ function displayList(whatList) {
             description.name = 'description';
             description.rows = '8'
             description.cols = '40'
-    
+
             const prioritySelector = document.createElement('select');
             const prioritySelectorLabel = document.createElement('label')
             prioritySelectorLabel.htmlFor = 'prioritySelector'
@@ -428,20 +442,20 @@ function displayList(whatList) {
             prioritySelector.appendChild(high)
             prioritySelector.appendChild(medium)
             prioritySelector.appendChild(low)
-    
+
             const submitButton = document.createElement('input');
             submitButton.id = 'submit-button'
             submitButton.type = 'submit';
             submitButton.value = 'Submit';
-    
+
             newItemForm.onsubmit = function () {
                 if (titleField.value === '') {
                     alert('You must at least include a title')
                     return false;
                 } else {
-                toDoListArea.appendChild(newItem(titleField.value, dueDate.value, prioritySelector.value, description.value))
-                content.removeChild(newItemFormContainer)
-                content.removeChild(mask)
+                    toDoListArea.appendChild(newItem(titleField.value, dueDate.value, prioritySelector.value, description.value))
+                    content.removeChild(newItemFormContainer)
+                    content.removeChild(mask)
                     return false;
                 }
             }
@@ -473,10 +487,10 @@ function displayList(whatList) {
                 content.removeChild(newItemFormContainer)
             }
         })
-        if (whatList === dueTodayList) {return} else {content.appendChild(newItemBtn)}
-    }   
+        if (whatList === dueTodayList) { return } else { content.appendChild(newItemBtn) }
+    }
     title()
-    content.appendChild(toDoListArea) 
+    content.appendChild(toDoListArea)
     newItemBtn()
 }
 
@@ -485,7 +499,7 @@ function load(e) {
     localStorage.setItem('toDoLists', JSON.stringify(toDoLists))
 }
 
-window.onload = function() {
+window.onload = function () {
     if (localStorage.getItem('toDoLists') !== null) {
         toDoLists = JSON.parse(localStorage.getItem('toDoLists'))
         displayList(toDoLists[1])
