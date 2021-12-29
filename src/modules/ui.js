@@ -61,6 +61,7 @@ function sideBar() {
         } else {
             const newList = listFactory(newListTitle)
             toDoLists.push(newList)
+            load()
             displayListList(newList)
         }
     })
@@ -276,6 +277,7 @@ function displayList(whatList) {
                     }
                 content.removeChild(newItemFormContainer)
                 content.removeChild(mask)
+                load()
                     return false;
                 }
             }
@@ -334,7 +336,9 @@ function displayList(whatList) {
         miniContainer1.appendChild(checkbox)
         miniContainer1.appendChild(itemTitle)
         miniContainer2.appendChild(dueDate)
+        if (whatList !== dueTodayList) {
         miniContainer2.appendChild(edit)
+        }
         miniContainer2.appendChild(info)
         listItem.appendChild(miniContainer1);
         listItem.appendChild(miniContainer2);
@@ -355,6 +359,7 @@ function displayList(whatList) {
     function newItem(title, duedate, priority, desc) {
         const thisItem = listItemFactory(title, duedate, priority, desc);
         whatList.list.push(thisItem);
+        load()
         return displayItem(thisItem)
     }
     
@@ -475,6 +480,17 @@ function displayList(whatList) {
     newItemBtn()
 }
 
+
+function load(e) {
+    localStorage.setItem('toDoLists', JSON.stringify(toDoLists))
+}
+
+window.onload = function() {
+    if (localStorage.getItem('toDoLists') !== null) {
+        toDoLists = JSON.parse(localStorage.getItem('toDoLists'))
+        displayList(toDoLists[1])
+    }
+}
 displayList(toDoLists[1])
 
 function loadUi() {
