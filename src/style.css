@@ -147,12 +147,12 @@ body {
 }
 
 #description {
+    -webkit-appearance: none;
     resize: none;
     background-color: #FFFFFF;
     opacity: 0.25;
     border-style: none;
     margin-top: 10px;
-    -webkit-appearance: none;
 }
 
 #duedate {
@@ -166,12 +166,13 @@ body {
 }
 
 #titlefield {
+    -webkit-appearance: none;
+    border-radius: 0;
     background: transparent;
     border: 0;
     border-bottom: 2px solid white;
     color: white;
     opacity: 0.25;
-    -webkit-appearance: none;
 }
 
 .side-bar-text {
@@ -194,11 +195,12 @@ body {
 }
 
 #priority-selector {
+    -webkit-appearance: none;
+    background-color: white;
     border-style: none;
     padding: 5px;
     margin: 5px 0px 5px 0px;
     cursor: pointer;
-    -webkit-appearance: none;
 }
 
 #submit-button {
@@ -206,6 +208,7 @@ body {
     padding: 5px;
     margin: 5px 0 5px 0;
     cursor: pointer;
+    background-color: white;
     -webkit-appearance: none;
 }
 
