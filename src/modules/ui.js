@@ -414,6 +414,7 @@ function displayList(whatList) {
             dueDateLabel.textContent = 'Due date: '
             dueDate.type = 'date';
             dueDate.id = 'duedate';
+            dueDate.placeholder = "yyyy - mm - dd"
             dueDate.name = 'duedate';
 
             const description = document.createElement('textarea')
