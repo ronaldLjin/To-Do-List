@@ -148,6 +148,9 @@ body {
 
 #description {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
     resize: none;
     background-color: #FFFFFF;
     opacity: 0.25;
@@ -156,8 +159,11 @@ body {
 }
 
 #duedate {
-    margin-right: 15px;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    margin-right: 15px;
     background: transparent;
     border: none;
     color: white;
@@ -167,6 +173,8 @@ body {
 
 #titlefield {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     border-radius: 0;
     background: transparent;
     border: 0;
@@ -196,6 +204,9 @@ body {
 
 #priority-selector {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
     background-color: white;
     border-style: none;
     padding: 5px;
@@ -204,12 +215,15 @@ body {
 }
 
 #submit-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
     border-style: none;
     padding: 5px;
     margin: 5px 0 5px 0;
     cursor: pointer;
     background-color: white;
-    -webkit-appearance: none;
 }
 
 .list:hover {
