@@ -232,6 +232,7 @@ function displayList(whatList) {
             dueDateLabel.textContent = 'Due date: '
             dueDate2.type = 'date';
             dueDate2.id = 'duedate';
+            dueDate2.placeholder = "yyyy - mm - dd"
             dueDate2.value = item.duedate;
             dueDate2.name = 'duedate';
 
