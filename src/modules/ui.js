@@ -3,8 +3,7 @@ const toDoListArea = document.createElement('div');
 toDoListArea.classList.add('to-do-list-area');
 
 let today = new Date()
-let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
+let date = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
 let toDoList1 = { title: 'To-do list 1', list: [] };
 let dueTodayList = { title: 'Due Today', list: [], type: 'today' }
 
